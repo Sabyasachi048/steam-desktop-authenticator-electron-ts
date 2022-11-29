@@ -10,7 +10,9 @@ export class SessionData {
 	oAuthToken: string;
 	steamId: number;
 
-	addCookies(cookies: Electron.Cookies) {
+	addCookies(
+		cookies: Electron.CookiesSetDetails[]
+	): Electron.CookiesSetDetails[] {
 		const cookiesToSet: Electron.CookiesSetDetails[] = [
 			{
 				url: steamcommunityUrl,
@@ -69,7 +71,6 @@ export class SessionData {
 				domain: defaultDomain,
 			},
 		];
-
-		cookiesToSet.forEach((cookie) => cookies.set(cookie));
+		return (cookies = [...cookies, ...cookiesToSet]);
 	}
 }

@@ -58,6 +58,6 @@ app.on("activate", () => {
 const initIpcMainHandlers = (win: BrowserWindow) => {
 	ipcMain.handle("get-steam-time", async (event) => {
 		console.log(57, `inside this`);
-		await TimeAligner.alignTimeAsync();
+		await TimeAligner.alignTime();
 	});
 };
