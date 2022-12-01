@@ -1,16 +1,17 @@
+import Base64 from "crypto-js/enc-base64";
+import Hex from "crypto-js/enc-hex";
+import WordArray from "crypto-js/lib-typedarrays";
+
 export function getSystemUnixTime(): number {
 	return Math.floor(Date.now() / 1000);
 }
 
-export function hexStringToByteArray(hex: string): Uint8Array {
-	if (isNullOrUndefinedOrEmptyString(hex)) {
-		return new Uint8Array(0);
-	}
-	const ret: number[] = [];
-	for (let i = 0, len = hex.length; i < len; i += 2) {
-		ret.push(parseInt(hex.substring(i, i + 2), 16));
-	}
-	return new Uint8Array(ret);
+export function hexStringToByteArray(hex: string): WordArray {
+	return Hex.parse(hex);
+}
+
+export function base64ToArrayBuffer(base64: string): WordArray {
+	return Base64.parse(base64);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
